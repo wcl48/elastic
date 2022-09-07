@@ -1,7 +1,6 @@
 package elastic
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"math"
@@ -15,9 +14,14 @@ var (
 	negaInf = Score(math.Inf(-1))
 )
 
-var (
-	posiInfExp = []byte("Infinity")
-	negaInfExp = []byte("-Infinity")
+const (
+	posiInfExp = `"Infinity"`
+	negaInfExp = `"-Infinity"`
+)
+
+const (
+	posiInfStr = "Infinity"
+	negaInfStr = "-Infinity"
 )
 
 func (s Score) MarshalJSON() ([]byte, error) {
@@ -25,7 +29,7 @@ func (s Score) MarshalJSON() ([]byte, error) {
 		return []byte(posiInfExp), nil
 	}
 	if s == negaInf {
-		return []byte(`"-Infinity"`), nil
+		return []byte(negaInfExp), nil
 	}
 	return []byte(strconv.FormatFloat(float64(s), 'g', -1, 64)), nil
 }
@@ -43,11 +47,11 @@ func (s *Score) UnmarshalJSON(v []byte) error {
 		// It excepts a number instead of a string, but it could not fulfilled.
 		return numErr
 	}
-	if bytes.Equal([]byte(str), posiInfExp) {
+	if str == posiInfStr {
 		*s = Score(math.Inf(0))
 		return nil
 	}
-	if bytes.Equal([]byte(str), negaInfExp) {
+	if str == negaInfStr {
 		*s = Score(math.Inf(-1))
 		return nil
 	}
