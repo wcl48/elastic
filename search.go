@@ -721,7 +721,7 @@ func (r *SearchResult) Each(typ reflect.Type) []interface{} {
 // SearchHits specifies the list of search hits.
 type SearchHits struct {
 	TotalHits *TotalHits   `json:"total,omitempty"`     // total number of hits found
-	MaxScore  *float64     `json:"max_score,omitempty"` // maximum score of all hits
+	MaxScore  *Score       `json:"max_score,omitempty"` // maximum score of all hits
 	Hits      []*SearchHit `json:"hits,omitempty"`      // the actual hits returned
 }
 
@@ -764,7 +764,7 @@ func (h *TotalHits) UnmarshalJSON(data []byte) error {
 
 // SearchHit is a single hit.
 type SearchHit struct {
-	Score          *float64                       `json:"_score,omitempty"`   // computed score
+	Score          *Score                         `json:"_score,omitempty"`   // computed score
 	Index          string                         `json:"_index,omitempty"`   // index name
 	Type           string                         `json:"_type,omitempty"`    // type meta field
 	Id             string                         `json:"_id,omitempty"`      // external or internal
@@ -835,7 +835,7 @@ type SearchHitInnerHits struct {
 // SearchExplanation explains how the score for a hit was computed.
 // See https://www.elastic.co/guide/en/elasticsearch/reference/7.0/search-request-explain.html.
 type SearchExplanation struct {
-	Value       float64             `json:"value"`             // e.g. 1.0
+	Value       Score               `json:"value"`             // e.g. 1.0
 	Description string              `json:"description"`       // e.g. "boost" or "ConstantScore(*:*), product of:"
 	Details     []SearchExplanation `json:"details,omitempty"` // recursive details
 }

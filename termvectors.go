@@ -491,7 +491,7 @@ type TokenInfo struct {
 
 type TermsInfo struct {
 	DocFreq  int64       `json:"doc_freq"`
-	Score    float64     `json:"score"`
+	Score    Score       `json:"score"`
 	TermFreq int64       `json:"term_freq"`
 	Ttf      int64       `json:"ttf"`
 	Tokens   []TokenInfo `json:"tokens"`

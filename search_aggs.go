@@ -857,7 +857,7 @@ func (a Aggregations) ScriptedMetric(name string) (*AggregationScriptedMetric, b
 
 // TopMetrics returns top metrics aggregation results.
 // See https://www.elastic.co/guide/en/elasticsearch/reference/7.0/search-aggregations-metrics-top-metrics.html
-//for details
+// for details
 func (a Aggregations) TopMetrics(name string) (*AggregationTopMetricsItems, bool) {
 	if raw, found := a[name]; found {
 		agg := new(AggregationTopMetricsItems)
@@ -1457,10 +1457,10 @@ func (a *AggregationBucketSignificantTerms) UnmarshalJSON(data []byte) error {
 type AggregationBucketSignificantTerm struct {
 	Aggregations
 
-	Key      string  //`json:"key"`
-	DocCount int64   //`json:"doc_count"`
-	BgCount  int64   //`json:"bg_count"`
-	Score    float64 //`json:"score"`
+	Key      string //`json:"key"`
+	DocCount int64  //`json:"doc_count"`
+	BgCount  int64  //`json:"bg_count"`
+	Score    Score  //`json:"score"`
 }
 
 // UnmarshalJSON decodes JSON data and initializes an AggregationBucketSignificantTerm structure.

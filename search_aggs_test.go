@@ -2336,8 +2336,8 @@ func TestAggsMetricsTopHits(t *testing.T) {
 	if subAgg.Hits.MaxScore == nil {
 		t.Fatalf("expected sub aggregation Hits.MaxScore != %v; got: %v", nil, *subAgg.Hits.MaxScore)
 	}
-	if *subAgg.Hits.MaxScore != float64(1.0) {
-		t.Fatalf("expected sub aggregation Hits.MaxScore = %v; got: %v", float64(1.0), *subAgg.Hits.MaxScore)
+	if *subAgg.Hits.MaxScore != Score(1.0) {
+		t.Fatalf("expected sub aggregation Hits.MaxScore = %v; got: %v", Score(1.0), *subAgg.Hits.MaxScore)
 	}
 
 	subAgg, found = agg.Buckets[1].TopHits("top_tags_hits")
@@ -2362,8 +2362,8 @@ func TestAggsMetricsTopHits(t *testing.T) {
 	if subAgg.Hits.MaxScore == nil {
 		t.Fatalf("expected sub aggregation Hits.MaxScore != %v; got: %v", nil, *subAgg.Hits.MaxScore)
 	}
-	if *subAgg.Hits.MaxScore != float64(1.0) {
-		t.Fatalf("expected sub aggregation Hits.MaxScore = %v; got: %v", float64(1.0), *subAgg.Hits.MaxScore)
+	if *subAgg.Hits.MaxScore != Score(1.0) {
+		t.Fatalf("expected sub aggregation Hits.MaxScore = %v; got: %v", Score(1.0), *subAgg.Hits.MaxScore)
 	}
 
 	subAgg, found = agg.Buckets[2].TopHits("top_tags_hits")
@@ -2388,8 +2388,8 @@ func TestAggsMetricsTopHits(t *testing.T) {
 	if subAgg.Hits.MaxScore == nil {
 		t.Fatalf("expected sub aggregation Hits.MaxScore != %v; got: %v", nil, *subAgg.Hits.MaxScore)
 	}
-	if *subAgg.Hits.MaxScore != float64(1.0) {
-		t.Fatalf("expected sub aggregation Hits.MaxScore = %v; got: %v", float64(1.0), *subAgg.Hits.MaxScore)
+	if *subAgg.Hits.MaxScore != Score(1.0) {
+		t.Fatalf("expected sub aggregation Hits.MaxScore = %v; got: %v", Score(1.0), *subAgg.Hits.MaxScore)
 	}
 }
 
@@ -2982,8 +2982,8 @@ func TestAggsBucketSignificantTerms(t *testing.T) {
 	if agg.Buckets[0].DocCount != 3640 {
 		t.Errorf("expected doc count = %d; got: %d", 3640, agg.Buckets[0].DocCount)
 	}
-	if agg.Buckets[0].Score != float64(0.371235374214817) {
-		t.Errorf("expected score = %v; got: %v", float64(0.371235374214817), agg.Buckets[0].Score)
+	if agg.Buckets[0].Score != Score(0.371235374214817) {
+		t.Errorf("expected score = %v; got: %v", Score(0.371235374214817), agg.Buckets[0].Score)
 	}
 	if agg.Buckets[0].BgCount != 66799 {
 		t.Errorf("expected BgCount = %d; got: %d", 66799, agg.Buckets[0].BgCount)
